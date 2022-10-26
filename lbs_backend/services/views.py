@@ -99,7 +99,7 @@ class AdvertisementView(APIView):
             serializer = CreateAdvertSerializer(data=data)
             if serializer.is_valid():
                 ad_obj = Advertisement(
-                    ADTitle=data["ADTitle"], UserID=request.user, LocationID_id=data["LocationID"],
+                    ADTitle=data["ADTitle"], ProviderID=data['ProviderID'], LocationID_id=data["LocationID"],
                     AdDescription=data["AdDescription"], StartDate=data["StartDate"], ExpiryDate=data["ExpiryDate"]
                 )
                 ad_obj.save()

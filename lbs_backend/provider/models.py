@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from services.models import Service, WorkingDays
 from users.models import Gender, CustomUser
 from locations.models import CenterLocation, CountyModel
 
@@ -22,6 +21,7 @@ class ProviderModel(models.Model):
 
 
 class ProviderService(models.Model):
+    from services.models import Service, WorkingDays
     AGE = [
         ('18+', '18+'), ('All', 'All'),
         ('10+', '10+'), ('16+', '16+'),

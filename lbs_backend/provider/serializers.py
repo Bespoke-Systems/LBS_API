@@ -3,7 +3,6 @@ from abc import ABC
 from rest_framework import serializers
 from .models import ProviderModel, ProviderService, ServiceResponse, ServiceRequest
 from users.serializers import UserModelSerializer
-from services.serializers import ServiceSerializer
 from locations.serializers import CenterLocationSerializer, CountyModelSerializers
 
 
@@ -23,6 +22,7 @@ class CreateProviderSerializer(serializers.Serializer):
 
 
 class ProviderServiceSerializer(serializers.ModelSerializer):
+    from services.serializers import ServiceSerializer
     Provider = ProviderSerializer(read_only=True, source="ProviderID")
     Service = ServiceSerializer(read_only=True, source="ProductID")
     Location = CenterLocationSerializer(source="CenterLocationID", read_only=True)

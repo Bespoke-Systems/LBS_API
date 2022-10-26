@@ -19,6 +19,6 @@ class WorkingDaysAdmin(admin.ModelAdmin):
 @admin.register(Advertisement)
 class AdvertisementAdmin(admin.ModelAdmin):
     list_display = [
-        "id", "ADTitle", "UserID", "LocationID", "AdDescription", "StartDate", "ExpiryDate",
+        "id", "ADTitle", "ProviderID", "LocationID", "AdDescription", "StartDate", "ExpiryDate",
         "NoOfMessages"
     ]
