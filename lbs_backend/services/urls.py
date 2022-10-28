@@ -11,6 +11,7 @@ urlpatterns = [
     # Ads
     re_path('^advert', views.AdvertisementView.as_view(), name="adverts"),
     re_path('^advert/search', views.getAdvertByRegion, name="search_ad"),
+    re_path('^advert/user', views.getAdvertByUser, name="user_ads"),
 
     # Requests
     re_path('^request', views.ServiceRequestView.as_view(), name="request"),

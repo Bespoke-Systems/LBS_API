@@ -134,6 +134,19 @@ def getAdvertByRegion(request):
         return Response(AdvertisementSerializer(adverts, many=True).data, status.HTTP_200_OK)
 
 
+@swagger_auto_schema(
+    tags=['Advertisements'], method="GET", operation_description="GET Adverts by `User`",
+    responses={200: AdvertisementSerializer(many=True)}
+)
+@api_view(["GET"])
+def getAdvertByUser(request):
+    if request.user:
+        ad_objs = Advertisement.objects.filter(UserID=request.user)
+        return Response(AdvertisementSerializer(ad_objs, many=True).data, status.HTTP_200_OK)
+    else:
+        return Response({"Error": "User is unauthorized"}, status.HTTP_401_UNAUTHORIZED)
+
+
 class ServiceRequestView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
