@@ -57,7 +57,7 @@ class UserStatusSerializer(serializers.Serializer):
 
 
 class ServiceRequestSerializer(serializers.ModelSerializer):
-    User = UserModelSerializer(read_only=True, source="UserID", many=False)
+    User = UserModelSerializer(source="UserID", many=False)
     Service = ProviderServiceSerializer(source="ProviderServiceID", many=False)
     CenterLocation = CenterLocationSerializer(source="CenterLocationID", many=False)
 

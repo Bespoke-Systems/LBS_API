@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer, Serializer
 from rest_framework import serializers
+from django.utils.timezone import localtime
 from .models import (
     WorkingDays, ServiceCategory, Service, Advertisement
 )
@@ -53,12 +54,19 @@ class AdvertisementSerializer(ModelSerializer):
             "NoOfMessages"
         ]
 
-
+2
 class CreateAdvertSerializer(Serializer):
     ADTitle = serializers.CharField()
+<<<<<<< Updated upstream
     ProviderID = serializers.IntegerField()
+=======
+<<<<<<< HEAD
+=======
+    ProviderID = serializers.IntegerField()
+>>>>>>> c2aff0757e981291333d0b0e9aec16180e857d21
+>>>>>>> Stashed changes
     ServiceID = serializers.ListField(child=serializers.IntegerField(), allow_empty=True)
     LocationID = serializers.IntegerField()
     AdDescription = serializers.CharField(allow_blank=True)
-    StartDate = serializers.DateField(allow_null=True)
+    StartDate = serializers.CharField(allow_null=True, allow_blank=True)
     ExpiryDate = serializers.DateField()

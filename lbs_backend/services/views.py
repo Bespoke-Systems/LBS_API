@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
+from django.utils.timezone import localtime
 
 from .models import (
     ServiceCategory, Service, Advertisement
@@ -99,9 +100,19 @@ class AdvertisementView(APIView):
             serializer = CreateAdvertSerializer(data=data)
             if serializer.is_valid():
                 ad_obj = Advertisement(
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+                    ADTitle=data["ADTitle"], UserID=request.user, LocationID_id=data["LocationID"],
+                    AdDescription=data["AdDescription"], ExpiryDate=data["ExpiryDate"]
+=======
+>>>>>>> Stashed changes
                     ADTitle=data["ADTitle"], ProviderID=data['ProviderID'], LocationID_id=data["LocationID"],
                     AdDescription=data["AdDescription"], StartDate=data["StartDate"], ExpiryDate=data["ExpiryDate"]
+>>>>>>> c2aff0757e981291333d0b0e9aec16180e857d21
                 )
+                if data["StartDate"] == "" or data["StartDate"] is None:
+                    ad_obj.StartDate = localtime().date()
                 ad_obj.save()
 
                 return Response(AdvertisementSerializer(ad_obj, many=False).data, status.HTTP_201_CREATED)
@@ -228,9 +239,8 @@ def getRequestNotRespondedByProvider(request):
         provider = ProviderModel.objects.filter(UserID=request.user).first()
         if provider:
             service_req_obj = ServiceRequest.objects.filter(
-                ProviderServiceID__ProviderID__UserID=request.user, serviceresponse__isnull=True
+                ProviderServiceID__ProviderID=provider, serviceresponse__isnull=True
             )
-            print("Data")
             return Response(ServiceRequestSerializer(service_req_obj, many=True).data, status.HTTP_200_OK)
         else:
             return Response({"Error": "you are not a service provider"}, status.HTTP_400_BAD_REQUEST)
@@ -298,10 +308,9 @@ def getResponseByUser(request):
 @permission_classes([permissions.IsAuthenticated])
 def getResponsesByProvider(request):
     if request.user:
-        provider = ProviderModel.objects.filter(request.user).first()
+        provider = ProviderModel.objects.filter(UserID=request.user).first()
         if provider:
             responses = ServiceResponse.objects.filter(ServiceRequestID__ProviderServiceID__ProviderID=provider)
-
             return Response(ServiceResponseSerializer(responses, many=True).data, status.HTTP_200_OK)
         else:
             return Response({"Error": "provider not found"}, status.HTTP_404_NOT_FOUND)
