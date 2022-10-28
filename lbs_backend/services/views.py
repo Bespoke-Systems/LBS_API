@@ -100,16 +100,8 @@ class AdvertisementView(APIView):
             serializer = CreateAdvertSerializer(data=data)
             if serializer.is_valid():
                 ad_obj = Advertisement(
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
                     ADTitle=data["ADTitle"], UserID=request.user, LocationID_id=data["LocationID"],
                     AdDescription=data["AdDescription"], ExpiryDate=data["ExpiryDate"]
-=======
->>>>>>> Stashed changes
-                    ADTitle=data["ADTitle"], ProviderID=data['ProviderID'], LocationID_id=data["LocationID"],
-                    AdDescription=data["AdDescription"], StartDate=data["StartDate"], ExpiryDate=data["ExpiryDate"]
->>>>>>> c2aff0757e981291333d0b0e9aec16180e857d21
                 )
                 if data["StartDate"] == "" or data["StartDate"] is None:
                     ad_obj.StartDate = localtime().date()
