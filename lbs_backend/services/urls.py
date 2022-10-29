@@ -16,7 +16,7 @@ urlpatterns = [
     # Requests
     re_path('^request', views.ServiceRequestView.as_view(), name="request"),
     re_path('^response', views.ServiceResponseView.as_view(), name="responses"),
-    re_path('^request/provider', views.getRequestsByProvider, name="get_requests_provider"),
+    re_path('^provider/request', views.getRequestsByProvider, name="get_requests_provider"),
     re_path('^request/client', views.getRequestsByClient, name="get_requests_client"),
     re_path('^not-accepted/request/client', views.getRequestNotRespondedByUser, name="get_requests_client_zero"),
     re_path('^not-accepted/request/provider', views.getRequestNotRespondedByProvider,

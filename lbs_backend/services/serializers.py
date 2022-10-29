@@ -42,14 +42,14 @@ class InverseCategorySerializer(ModelSerializer):
 
 class AdvertisementSerializer(ModelSerializer):
     from provider.serializers import ProviderSerializer
-    Provider = ProviderSerializer(source="ProviderID", read_only=True, many=False)
+    User = UserModelSerializer(source="UserID", read_only=True, many=False)
     Location = CountyModelSerializers(source="LocationID", read_only=True, many=False)
     Service = InverseServiceSerializer(source="ServiceID", read_only=True, many=True)
 
     class Meta:
         model = Advertisement
         fields = [
-            "id", "ADTitle", "Provider", "Service", "Location", "AdDescription", "StartDate", "ExpiryDate",
+            "id", "ADTitle", "User", "Service", "Location", "AdDescription", "StartDate", "ExpiryDate",
             "NoOfMessages"
         ]
 
