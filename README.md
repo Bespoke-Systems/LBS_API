@@ -8,11 +8,11 @@ $ python3 -m venv [name-of-your-env]
 $ source [name-of-env]/bin/activate
 
 # navigate to project folder
-$ cd lbs_backend
+$ cd api
 
 # install the required dependencies in your env
 $ pip install -r requeirements.txt
-$ cd lbs_backend
+$ cd api
 
 # migrate your sqlite3 database
 $ python manage.py migrate

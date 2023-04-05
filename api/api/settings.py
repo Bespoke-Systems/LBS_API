@@ -58,7 +58,7 @@ DJOSER = {
     },
 }
 SWAGGER_SETTINGS = {
-    'DEFAULT_AUTO_SCHEMA_CLASS': 'lbs_backend.utils.CustomSwaggerAutoSchema',
+    'DEFAULT_AUTO_SCHEMA_CLASS': 'api.utils.CustomSwaggerAutoSchema',
 }
 
 MIDDLEWARE = [
@@ -72,7 +72,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'lbs_backend.urls'
+ROOT_URLCONF = 'api.urls'
 
 TEMPLATES = [
     {
@@ -90,7 +90,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'lbs_backend.wsgi.application'
+WSGI_APPLICATION = 'api.wsgi.application'
 
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "True") == "True"
 
